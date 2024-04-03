@@ -17,9 +17,9 @@ namespace Logica
             return cacheMorosidad.ObtenerTodos();
         }
 
-        public List<Morosidad> ListarPorEstudiante (string ci)
+        public List<Morosidad> ListarPorEstudiante (int id_estudiante)
         {
-            return cacheMorosidad.ObtenerTodos().Where(e => e.ci_estudiante == ci).ToList();
+            return cacheMorosidad.ObtenerTodos().Where(e => e.id_estudiante == id_estudiante).ToList();
         }
 
         public List<Morosidad> ListarPorDiasRetraso(int dias)
@@ -27,7 +27,7 @@ namespace Logica
             return cacheMorosidad.ObtenerTodos().Where(e => e.dias_retraso == dias).ToList();
         }
 
-        public Morosidad leer(int id)
+        public Morosidad leerPorId(int id)
         {
             return cacheMorosidad.ObtenerTodos().Where(e => e.id_morosidad == id).FirstOrDefault();
         }
@@ -42,9 +42,9 @@ namespace Logica
             cacheMorosidad.Actualizar(morosidad);
         }
 
-        public bool Eliminar(Morosidad morosidad)
+        public bool Eliminar(int id )
         {
-            return cacheMorosidad.Eliminar(morosidad);
+            return cacheMorosidad.Eliminar(id);
         }
 
     }
