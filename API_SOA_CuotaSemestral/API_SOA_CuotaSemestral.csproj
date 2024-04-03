@@ -90,10 +90,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AccesoDatos\AccesoDatos.csproj">
-      <Project>{169520b1-28fc-4927-a3db-9dab29fcaecd}</Project>
-      <Name>AccesoDatos</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Logica\Logica.csproj">
       <Project>{9ff5f77f-ce16-4502-990a-75b18d6a5572}</Project>
       <Name>Logica</Name>

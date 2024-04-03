@@ -8,58 +8,54 @@ namespace Datos
 {
     public class datosPagos:IDatos<Pagos>
     {
-        bddColegiaturas bdd;
+        bddColegiaturasV2 _context;
         public datosPagos()
         {
-            bdd = new bddColegiaturas();
+            _context = new bddColegiaturasV2();
 
         }
 
         #region metodos de Lectura
         public List<Pagos> Listar()
         {
-            return bdd.Pagos.ToList();
+            return _context.Pagos.Where(p => p.borrado_logico == false).ToList();
         }
 
-        public Pagos leer(int id)
+        public Pagos leerPorId(int id)
         {
-            return bdd.Pagos.Where(p => p.id_pago == id).FirstOrDefault();
+            return _context.Pagos.Where(p => p.id_pago == id && p.borrado_logico == false).FirstOrDefault();
         }
 
-        public Pagos leer(string id)
-        {
-          // Sin implementar
-          return null;
-        }
 
         #endregion
 
         #region metodos de escritura
         public void Insertar(Pagos pago)
         {
-            bdd.Pagos.Add(pago);
-            bdd.SaveChanges();
+            _context.Pagos.Add(pago);
+            _context.SaveChanges();
         }
 
         public void Actualizar(Pagos pago)
         {
-            Pagos pagoModificar = bdd.Pagos.Where(p => p.id_pago == pago.id_pago).FirstOrDefault();
+            Pagos pagoModificar = leerPorId(pago.id_pago);
             pagoModificar.fecha_pago = pago.fecha_pago;
             pagoModificar.monto = pago.monto;
-            pagoModificar.ci_estudiante = pago.ci_estudiante;
-            bdd.SaveChanges();
+            pagoModificar.id_estudiante = pago.id_estudiante;
+            _context.SaveChanges();
         }
 
-        public bool Eliminar(Pagos pago)
+        public bool Eliminar(int id_pago)
         {
-            Pagos pagoEliminar = leer(pago.id_pago);
+            Pagos pagoEliminar = leerPorId(id_pago);
             if (pagoEliminar != null)
             {
-                bdd.Pagos.Remove(pagoEliminar);
-                bdd.SaveChanges();
+                pagoEliminar.borrado_logico = true;
+                pagoEliminar.fecha_borrado_logico = DateTime.Now;
+                _context.SaveChanges();
                 return true;
-            }else
-                return false;
+            }
+            return false;
         }
         #endregion
     }

@@ -9,10 +9,10 @@ namespace Datos
     public interface IDatos<T>
     {
         List<T> Listar();
-        T leer(string ci);
-        T leer(int id);
+        T leerPorId(int id_entidad);
         void Insertar(T entidad);
+
         void Actualizar(T entidad);
-        bool Eliminar(T entidad);
+        bool Eliminar(int id_entidad);
     }
 }

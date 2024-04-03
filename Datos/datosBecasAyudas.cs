@@ -8,57 +8,55 @@ namespace Datos
 {
     public class datosBecasAyudas: IDatos<Becas_Ayudas_Financieras>
     {
-        bddColegiaturas bdd;
+        bddColegiaturasV2 _context;
         public datosBecasAyudas()
         {
-            bdd = new bddColegiaturas();
+            _context = new bddColegiaturasV2();
 
         }
 
         #region metodos de Lectura
         public List<Becas_Ayudas_Financieras> Listar()
         {
-            return bdd.Becas_Ayudas_Financieras.ToList();
+            return _context.Becas_Ayudas_Financieras.Where(b => b.borrado_logico == false).ToList();
         }
 
-        public Becas_Ayudas_Financieras leer(int id)
+        public Becas_Ayudas_Financieras leerPorId(int id)
         {
-            return bdd.Becas_Ayudas_Financieras.Where(b => b.id_beca == id).FirstOrDefault();
+            return _context.Becas_Ayudas_Financieras.Where(b => b.id_beca == id && b.borrado_logico == false).FirstOrDefault();
         }
 
-        public Becas_Ayudas_Financieras leer(string id)
-        {return null;
-        }
 
         #endregion
 
         #region metodos de escritura
         public void Insertar(Becas_Ayudas_Financieras becaAyuda)
         {
-            bdd.Becas_Ayudas_Financieras.Add(becaAyuda);
-            bdd.SaveChanges();
+            _context.Becas_Ayudas_Financieras.Add(becaAyuda);
+            _context.SaveChanges();
         }
 
         public void Actualizar(Becas_Ayudas_Financieras becaAyuda)
         {
-            Becas_Ayudas_Financieras becaAyudaModificar = leer(becaAyuda.id_beca);
-            becaAyudaModificar.ci_estudiante = becaAyuda.ci_estudiante;
+            Becas_Ayudas_Financieras becaAyudaModificar = leerPorId(becaAyuda.id_beca);
+            becaAyudaModificar.id_estudiante = becaAyuda.id_estudiante;
             becaAyudaModificar.tipo_beca = becaAyuda.tipo_beca;
             becaAyudaModificar.monto = becaAyuda.monto;
             becaAyudaModificar.semestre = becaAyuda.semestre;
-            bdd.SaveChanges();
+            _context.SaveChanges();
         }
 
-        public bool Eliminar(Becas_Ayudas_Financieras beca)
+        public bool Eliminar(int id_beca)
         {
-            Becas_Ayudas_Financieras becaAyudaEliminar = leer(beca.id_beca);
+            Becas_Ayudas_Financieras becaAyudaEliminar = leerPorId(id_beca);
             if (becaAyudaEliminar != null)
             {
-                bdd.Becas_Ayudas_Financieras.Remove(becaAyudaEliminar);
-                bdd.SaveChanges();
+                becaAyudaEliminar.borrado_logico = true;
+                becaAyudaEliminar.fecha_borrado_logico = DateTime.Now;
+                _context.SaveChanges();
                 return true;
-            }else
-                return false;
+            }
+            return false;
         }
         #endregion
     }

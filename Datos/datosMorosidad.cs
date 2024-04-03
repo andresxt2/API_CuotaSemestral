@@ -8,58 +8,55 @@ namespace Datos
 {
     public class datosMorosidad:IDatos<Morosidad>
     {
-        bddColegiaturas bdd;
+        bddColegiaturasV2 _context;
         public datosMorosidad()
         {
-            bdd = new bddColegiaturas();
+            _context = new bddColegiaturasV2();
 
         }
 
         #region metodos de Lectura
         public List<Morosidad> Listar()
         {
-            return bdd.Morosidad.ToList();
+            return _context.Morosidad.Where(m => m.borrado_logico == false).ToList();
         }
 
-        public Morosidad leer(int id)
+        public Morosidad leerPorId(int id)
         {
-            return bdd.Morosidad.Where(m => m.id_morosidad == id).FirstOrDefault();
+            return _context.Morosidad.Where(m => m.id_morosidad == id && m.borrado_logico == false).FirstOrDefault();
         }
 
-        public Morosidad leer(string id)
-        {
-            return null;
-        }
 
         #endregion
 
         #region metodos de escritura
         public void Insertar(Morosidad morosidad)
         {
-            bdd.Morosidad.Add(morosidad);
-            bdd.SaveChanges();
+            _context.Morosidad.Add(morosidad);
+            _context.SaveChanges();
         }
 
         public void Actualizar(Morosidad morosidad)
         {
-            Morosidad morosidadModificar = leer(morosidad.id_morosidad);
-            morosidadModificar.ci_estudiante = morosidad.ci_estudiante;
+            Morosidad morosidadModificar = leerPorId(morosidad.id_morosidad);
+            morosidadModificar.id_estudiante = morosidad.id_estudiante;
             morosidadModificar.semestre = morosidad.semestre;
             morosidadModificar.dias_retraso = morosidad.dias_retraso;
             morosidadModificar.monto_debido = morosidad.monto_debido;
-            bdd.SaveChanges();
+            _context.SaveChanges();
         }
 
-        public bool Eliminar (Morosidad morosidad)
+        public bool Eliminar(int id_morosidad)
         {
-            Morosidad morosidadEliminar = leer(morosidad.id_morosidad);
+            Morosidad morosidadEliminar = leerPorId(id_morosidad);
             if (morosidadEliminar != null)
             {
-                bdd.Morosidad.Remove(morosidadEliminar);
-                bdd.SaveChanges();
+                morosidadEliminar.borrado_logico = true;
+                morosidadEliminar.fecha_borrado_logico = DateTime.Now;
+                _context.SaveChanges();
                 return true;
-            }else
-                return false;
+            }
+            return false;
         }
         #endregion
     }

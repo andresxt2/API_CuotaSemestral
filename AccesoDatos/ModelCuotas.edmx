@@ -4,57 +4,66 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="bddColegiaturasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="bddColegiaturasV2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Becas_Ayudas_Financieras">
           <Key>
             <PropertyRef Name="id_beca" />
           </Key>
           <Property Name="id_beca" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ci_estudiante" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="id_estudiante" Type="int" Nullable="false" />
           <Property Name="tipo_beca" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="monto" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="semestre" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="borrado_logico" Type="bit" />
+          <Property Name="fecha_borrado_logico" Type="date" />
         </EntityType>
         <EntityType Name="Estudiantes">
           <Key>
-            <PropertyRef Name="ci_estudiante" />
+            <PropertyRef Name="id_estudiante" />
           </Key>
+          <Property Name="id_estudiante" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ci_estudiante" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="correo_electronico" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="programa_academico" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="estado_matricula" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="borrado_logico" Type="bit" />
+          <Property Name="fecha_borrado_logico" Type="date" />
         </EntityType>
         <EntityType Name="Morosidad">
           <Key>
             <PropertyRef Name="id_morosidad" />
           </Key>
           <Property Name="id_morosidad" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ci_estudiante" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="id_estudiante" Type="int" Nullable="false" />
           <Property Name="semestre" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="dias_retraso" Type="int" Nullable="false" />
           <Property Name="monto_debido" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="borrado_logico" Type="bit" />
+          <Property Name="fecha_borrado_logico" Type="date" />
         </EntityType>
         <EntityType Name="Pagos">
           <Key>
             <PropertyRef Name="id_pago" />
           </Key>
           <Property Name="id_pago" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ci_estudiante" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="id_estudiante" Type="int" Nullable="false" />
           <Property Name="fecha_pago" Type="date" Nullable="false" />
           <Property Name="monto" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="semestre" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="estado" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="borrado_logico" Type="bit" />
+          <Property Name="fecha_borrado_logico" Type="date" />
         </EntityType>
         <Association Name="FK_Becas_Ayudas_Financieras_Estudiantes">
           <End Role="Estudiantes" Type="Self.Estudiantes" Multiplicity="1" />
           <End Role="Becas_Ayudas_Financieras" Type="Self.Becas_Ayudas_Financieras" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Estudiantes">
-              <PropertyRef Name="ci_estudiante" />
+              <PropertyRef Name="id_estudiante" />
             </Principal>
             <Dependent Role="Becas_Ayudas_Financieras">
-              <PropertyRef Name="ci_estudiante" />
+              <PropertyRef Name="id_estudiante" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -63,10 +72,10 @@
           <End Role="Morosidad" Type="Self.Morosidad" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Estudiantes">
-              <PropertyRef Name="ci_estudiante" />
+              <PropertyRef Name="id_estudiante" />
             </Principal>
             <Dependent Role="Morosidad">
-              <PropertyRef Name="ci_estudiante" />
+              <PropertyRef Name="id_estudiante" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -75,14 +84,14 @@
           <End Role="Pagos" Type="Self.Pagos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Estudiantes">
-              <PropertyRef Name="ci_estudiante" />
+              <PropertyRef Name="id_estudiante" />
             </Principal>
             <Dependent Role="Pagos">
-              <PropertyRef Name="ci_estudiante" />
+              <PropertyRef Name="id_estudiante" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="bddColegiaturasModelStoreContainer">
+        <EntityContainer Name="bddColegiaturasV2ModelStoreContainer">
           <EntitySet Name="Becas_Ayudas_Financieras" EntityType="Self.Becas_Ayudas_Financieras" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Estudiantes" EntityType="Self.Estudiantes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Morosidad" EntityType="Self.Morosidad" Schema="dbo" store:Type="Tables" />
@@ -104,27 +113,32 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="bddColegiaturasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="bddColegiaturasV2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Becas_Ayudas_Financieras">
           <Key>
             <PropertyRef Name="id_beca" />
           </Key>
           <Property Name="id_beca" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ci_estudiante" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_estudiante" Type="Int32" Nullable="false" />
           <Property Name="tipo_beca" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="monto" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="semestre" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="borrado_logico" Type="Boolean" />
+          <Property Name="fecha_borrado_logico" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Estudiantes" Relationship="Self.FK_Becas_Ayudas_Financieras_Estudiantes" FromRole="Becas_Ayudas_Financieras" ToRole="Estudiantes" />
         </EntityType>
         <EntityType Name="Estudiantes">
           <Key>
-            <PropertyRef Name="ci_estudiante" />
+            <PropertyRef Name="id_estudiante" />
           </Key>
+          <Property Name="id_estudiante" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ci_estudiante" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="correo_electronico" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="programa_academico" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="estado_matricula" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="borrado_logico" Type="Boolean" />
+          <Property Name="fecha_borrado_logico" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Becas_Ayudas_Financieras" Relationship="Self.FK_Becas_Ayudas_Financieras_Estudiantes" FromRole="Estudiantes" ToRole="Becas_Ayudas_Financieras" />
           <NavigationProperty Name="Morosidad" Relationship="Self.FK_Morosidad_Estudiantes" FromRole="Estudiantes" ToRole="Morosidad" />
           <NavigationProperty Name="Pagos" Relationship="Self.FK_Pagos_Estudiantes" FromRole="Estudiantes" ToRole="Pagos" />
@@ -134,10 +148,12 @@
             <PropertyRef Name="id_morosidad" />
           </Key>
           <Property Name="id_morosidad" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ci_estudiante" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_estudiante" Type="Int32" Nullable="false" />
           <Property Name="semestre" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="dias_retraso" Type="Int32" Nullable="false" />
           <Property Name="monto_debido" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="borrado_logico" Type="Boolean" />
+          <Property Name="fecha_borrado_logico" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Estudiantes" Relationship="Self.FK_Morosidad_Estudiantes" FromRole="Morosidad" ToRole="Estudiantes" />
         </EntityType>
         <EntityType Name="Pagos">
@@ -145,11 +161,13 @@
             <PropertyRef Name="id_pago" />
           </Key>
           <Property Name="id_pago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ci_estudiante" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id_estudiante" Type="Int32" Nullable="false" />
           <Property Name="fecha_pago" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="monto" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="semestre" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="borrado_logico" Type="Boolean" />
+          <Property Name="fecha_borrado_logico" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Estudiantes" Relationship="Self.FK_Pagos_Estudiantes" FromRole="Pagos" ToRole="Estudiantes" />
         </EntityType>
         <Association Name="FK_Becas_Ayudas_Financieras_Estudiantes">
@@ -157,10 +175,10 @@
           <End Role="Becas_Ayudas_Financieras" Type="Self.Becas_Ayudas_Financieras" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Estudiantes">
-              <PropertyRef Name="ci_estudiante" />
+              <PropertyRef Name="id_estudiante" />
             </Principal>
             <Dependent Role="Becas_Ayudas_Financieras">
-              <PropertyRef Name="ci_estudiante" />
+              <PropertyRef Name="id_estudiante" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -169,10 +187,10 @@
           <End Role="Morosidad" Type="Self.Morosidad" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Estudiantes">
-              <PropertyRef Name="ci_estudiante" />
+              <PropertyRef Name="id_estudiante" />
             </Principal>
             <Dependent Role="Morosidad">
-              <PropertyRef Name="ci_estudiante" />
+              <PropertyRef Name="id_estudiante" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -181,14 +199,14 @@
           <End Role="Pagos" Type="Self.Pagos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Estudiantes">
-              <PropertyRef Name="ci_estudiante" />
+              <PropertyRef Name="id_estudiante" />
             </Principal>
             <Dependent Role="Pagos">
-              <PropertyRef Name="ci_estudiante" />
+              <PropertyRef Name="id_estudiante" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="bddColegiaturas" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="bddColegiaturasV2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Becas_Ayudas_Financieras" EntityType="Self.Becas_Ayudas_Financieras" />
           <EntitySet Name="Estudiantes" EntityType="Self.Estudiantes" />
           <EntitySet Name="Morosidad" EntityType="Self.Morosidad" />
@@ -211,49 +229,58 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="bddColegiaturasModelStoreContainer" CdmEntityContainer="bddColegiaturas">
+        <EntityContainerMapping StorageEntityContainer="bddColegiaturasV2ModelStoreContainer" CdmEntityContainer="bddColegiaturasV2">
           <EntitySetMapping Name="Becas_Ayudas_Financieras">
-            <EntityTypeMapping TypeName="bddColegiaturasModel.Becas_Ayudas_Financieras">
+            <EntityTypeMapping TypeName="bddColegiaturasV2Model.Becas_Ayudas_Financieras">
               <MappingFragment StoreEntitySet="Becas_Ayudas_Financieras">
                 <ScalarProperty Name="id_beca" ColumnName="id_beca" />
-                <ScalarProperty Name="ci_estudiante" ColumnName="ci_estudiante" />
+                <ScalarProperty Name="id_estudiante" ColumnName="id_estudiante" />
                 <ScalarProperty Name="tipo_beca" ColumnName="tipo_beca" />
                 <ScalarProperty Name="monto" ColumnName="monto" />
                 <ScalarProperty Name="semestre" ColumnName="semestre" />
+                <ScalarProperty Name="borrado_logico" ColumnName="borrado_logico" />
+                <ScalarProperty Name="fecha_borrado_logico" ColumnName="fecha_borrado_logico" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Estudiantes">
-            <EntityTypeMapping TypeName="bddColegiaturasModel.Estudiantes">
+            <EntityTypeMapping TypeName="bddColegiaturasV2Model.Estudiantes">
               <MappingFragment StoreEntitySet="Estudiantes">
+                <ScalarProperty Name="id_estudiante" ColumnName="id_estudiante" />
                 <ScalarProperty Name="ci_estudiante" ColumnName="ci_estudiante" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="correo_electronico" ColumnName="correo_electronico" />
                 <ScalarProperty Name="programa_academico" ColumnName="programa_academico" />
                 <ScalarProperty Name="estado_matricula" ColumnName="estado_matricula" />
+                <ScalarProperty Name="borrado_logico" ColumnName="borrado_logico" />
+                <ScalarProperty Name="fecha_borrado_logico" ColumnName="fecha_borrado_logico" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Morosidad">
-            <EntityTypeMapping TypeName="bddColegiaturasModel.Morosidad">
+            <EntityTypeMapping TypeName="bddColegiaturasV2Model.Morosidad">
               <MappingFragment StoreEntitySet="Morosidad">
                 <ScalarProperty Name="id_morosidad" ColumnName="id_morosidad" />
-                <ScalarProperty Name="ci_estudiante" ColumnName="ci_estudiante" />
+                <ScalarProperty Name="id_estudiante" ColumnName="id_estudiante" />
                 <ScalarProperty Name="semestre" ColumnName="semestre" />
                 <ScalarProperty Name="dias_retraso" ColumnName="dias_retraso" />
                 <ScalarProperty Name="monto_debido" ColumnName="monto_debido" />
+                <ScalarProperty Name="borrado_logico" ColumnName="borrado_logico" />
+                <ScalarProperty Name="fecha_borrado_logico" ColumnName="fecha_borrado_logico" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Pagos">
-            <EntityTypeMapping TypeName="bddColegiaturasModel.Pagos">
+            <EntityTypeMapping TypeName="bddColegiaturasV2Model.Pagos">
               <MappingFragment StoreEntitySet="Pagos">
                 <ScalarProperty Name="id_pago" ColumnName="id_pago" />
-                <ScalarProperty Name="ci_estudiante" ColumnName="ci_estudiante" />
+                <ScalarProperty Name="id_estudiante" ColumnName="id_estudiante" />
                 <ScalarProperty Name="fecha_pago" ColumnName="fecha_pago" />
                 <ScalarProperty Name="monto" ColumnName="monto" />
                 <ScalarProperty Name="semestre" ColumnName="semestre" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="borrado_logico" ColumnName="borrado_logico" />
+                <ScalarProperty Name="fecha_borrado_logico" ColumnName="fecha_borrado_logico" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

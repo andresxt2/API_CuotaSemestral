@@ -8,27 +8,25 @@ namespace Datos
 {
     public class datosEstudiantes:IDatos<Estudiantes>
     {
-        bddColegiaturas bdd;
+        bddColegiaturasV2 _context;
         public datosEstudiantes()
         {
-            bdd = new bddColegiaturas();
+            _context = new bddColegiaturasV2();
 
         }
 
         #region metodos de Lectura
         public List<Estudiantes> Listar()
         {
-            return bdd.Estudiantes.ToList();
+            var estudiantes = _context.Estudiantes.Where(e => e.borrado_logico == false).ToList();
+            //becas y morosidades y pagos
+            return estudiantes;
         }
 
-        public Estudiantes leer(string ci)
-        {
-            return bdd.Estudiantes.Where(e => e.ci_estudiante == ci).FirstOrDefault();
-        }
 
-        public Estudiantes leer(int ci)
+        public Estudiantes leerPorId(int id)
         {
-            return null;
+            return _context.Estudiantes.Where(e => e.id_estudiante == id && e.borrado_logico == false).FirstOrDefault();
         }
 
         #endregion
@@ -36,30 +34,31 @@ namespace Datos
         #region metodos de escritura
         public void Insertar(Estudiantes estudiante)
         {
-            bdd.Estudiantes.Add(estudiante);
-            bdd.SaveChanges();
+            _context.Estudiantes.Add(estudiante);
+            _context.SaveChanges();
         }
 
         public void Actualizar(Estudiantes estudiante)
         {
-            Estudiantes estudianteModificar = bdd.Estudiantes.Where(e => e.ci_estudiante == estudiante.ci_estudiante).FirstOrDefault();
+            Estudiantes estudianteModificar = leerPorId(estudiante.id_estudiante);
             estudianteModificar.nombre = estudiante.nombre;
             estudianteModificar.correo_electronico = estudiante.correo_electronico;
             estudianteModificar.programa_academico = estudiante.programa_academico;
             estudianteModificar.estado_matricula = estudiante.estado_matricula;
-            bdd.SaveChanges();
+            _context.SaveChanges();
         }
 
-        public bool Eliminar(Estudiantes estudiante)
+        public bool Eliminar(int id_estudiante)
         {
-            Estudiantes estudianteEliminar = leer(estudiante.ci_estudiante);
+            Estudiantes estudianteEliminar = leerPorId(id_estudiante);
             if (estudianteEliminar != null)
             {
-                bdd.Estudiantes.Remove(estudianteEliminar);
-                bdd.SaveChanges();
+                estudianteEliminar.borrado_logico = true;
+                estudianteEliminar.fecha_borrado_logico = DateTime.Now;
+                _context.SaveChanges();
                 return true;
-            }else
-                return false;
+            }
+            return false;
         }
         #endregion
 

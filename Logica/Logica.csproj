@@ -52,7 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AccesoDatos\AccesoDatos.csproj">
-      <Project>{169520b1-28fc-4927-a3db-9dab29fcaecd}</Project>
+      <Project>{a9be4606-3e23-43c1-88ce-048e4bb7199e}</Project>
       <Name>AccesoDatos</Name>
     </ProjectReference>
     <ProjectReference Include="..\Cache\Cache.csproj">

@@ -15,10 +15,12 @@ namespace AccesoDatos
     public partial class Morosidad
     {
         public int id_morosidad { get; set; }
-        public string ci_estudiante { get; set; }
+        public int id_estudiante { get; set; }
         public string semestre { get; set; }
         public int dias_retraso { get; set; }
         public decimal monto_debido { get; set; }
+        public Nullable<bool> borrado_logico { get; set; }
+        public Nullable<System.DateTime> fecha_borrado_logico { get; set; }
     
         public virtual Estudiantes Estudiantes { get; set; }
     }

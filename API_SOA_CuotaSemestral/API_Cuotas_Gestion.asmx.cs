@@ -18,6 +18,8 @@ namespace API_SOA_CuotaSemestral
     public class API_Cuotas_Gestion : System.Web.Services.WebService
     {
         logicaEstudiantes logica = new logicaEstudiantes();
+        logicaBecas logicaBecas = new logicaBecas();
+
         [WebMethod]
         public List<Estudiantes> Listar()
         {
@@ -58,6 +60,18 @@ namespace API_SOA_CuotaSemestral
         public bool Eliminar(Estudiantes estudiante)
         {
             return logica.Eliminar(estudiante);
+        }
+
+        [WebMethod]
+        public List<Becas_Ayudas_Financieras> ListarBecasAyudas()
+        {
+            return logicaBecas.Listar();
+        }
+
+        [WebMethod]
+        public List<Becas_Ayudas_Financieras> ListarPorEstudiante(string ci)
+        {
+            return logicaBecas.ListarPorEstudiante(ci);
         }
     }
 }

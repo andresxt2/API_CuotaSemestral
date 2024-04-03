@@ -21,6 +21,15 @@ namespace Cache
             return _cache;
         }
 
+        public TEntidad leerPorId(int id)
+        {
+            if (!_cache.Any())
+            {
+                CargarDesdeBD();
+            }
+            return _cache.Where(e => e.Equals(id)).FirstOrDefault();
+        }
+
         public void Insertar(TEntidad entidad)
         {
             _datos.Insertar(entidad);
@@ -33,9 +42,9 @@ namespace Cache
             CargarDesdeBD();
         }
 
-        public bool Eliminar(TEntidad entidad)
+        public bool Eliminar(int id)
         {
-            bool resultado = _datos.Eliminar(entidad);
+            bool resultado = _datos.Eliminar(id);
             CargarDesdeBD();
             return resultado;
         }

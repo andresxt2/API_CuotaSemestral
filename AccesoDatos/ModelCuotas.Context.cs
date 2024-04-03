@@ -13,10 +13,10 @@ namespace AccesoDatos
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class bddColegiaturas : DbContext
+    public partial class bddColegiaturasV2 : DbContext
     {
-        public bddColegiaturas()
-            : base("name=bddColegiaturas")
+        public bddColegiaturasV2()
+            : base("name=bddColegiaturasV2")
         {
             this.Configuration.ProxyCreationEnabled = false; // Añade esta línea para deshabilitar la creación de proxies
         }

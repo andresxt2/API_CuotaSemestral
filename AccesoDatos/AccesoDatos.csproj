@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{169520B1-28FC-4927-A3DB-9DAB29FCAECD}</ProjectGuid>
+    <ProjectGuid>{A9BE4606-3E23-43C1-88CE-048E4BB7199E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AccesoDatos</RootNamespace>
@@ -51,57 +51,57 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Becas_Ayudas_Financieras.cs">
-      <DependentUpon>ModeloCuotas.tt</DependentUpon>
+      <DependentUpon>ModelCuotas.tt</DependentUpon>
     </Compile>
     <Compile Include="Estudiantes.cs">
-      <DependentUpon>ModeloCuotas.tt</DependentUpon>
+      <DependentUpon>ModelCuotas.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModeloCuotas.Context.cs">
+    <Compile Include="ModelCuotas.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModeloCuotas.Context.tt</DependentUpon>
+      <DependentUpon>ModelCuotas.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModeloCuotas.cs">
+    <Compile Include="ModelCuotas.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModeloCuotas.tt</DependentUpon>
+      <DependentUpon>ModelCuotas.tt</DependentUpon>
     </Compile>
-    <Compile Include="ModeloCuotas.Designer.cs">
+    <Compile Include="ModelCuotas.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ModeloCuotas.edmx</DependentUpon>
+      <DependentUpon>ModelCuotas.edmx</DependentUpon>
     </Compile>
     <Compile Include="Morosidad.cs">
-      <DependentUpon>ModeloCuotas.tt</DependentUpon>
+      <DependentUpon>ModelCuotas.tt</DependentUpon>
     </Compile>
     <Compile Include="Pagos.cs">
-      <DependentUpon>ModeloCuotas.tt</DependentUpon>
+      <DependentUpon>ModelCuotas.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="ModeloCuotas.edmx">
+    <EntityDeploy Include="ModelCuotas.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ModeloCuotas.Designer.cs</LastGenOutput>
+      <LastGenOutput>ModelCuotas.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="ModeloCuotas.edmx.diagram">
-      <DependentUpon>ModeloCuotas.edmx</DependentUpon>
+    <None Include="ModelCuotas.edmx.diagram">
+      <DependentUpon>ModelCuotas.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ModeloCuotas.Context.tt">
+    <Content Include="ModelCuotas.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ModeloCuotas.Context.cs</LastGenOutput>
-      <DependentUpon>ModeloCuotas.edmx</DependentUpon>
+      <LastGenOutput>ModelCuotas.Context.cs</LastGenOutput>
+      <DependentUpon>ModelCuotas.edmx</DependentUpon>
     </Content>
-    <Content Include="ModeloCuotas.tt">
+    <Content Include="ModelCuotas.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ModeloCuotas.edmx</DependentUpon>
-      <LastGenOutput>ModeloCuotas.cs</LastGenOutput>
+      <DependentUpon>ModelCuotas.edmx</DependentUpon>
+      <LastGenOutput>ModelCuotas.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>

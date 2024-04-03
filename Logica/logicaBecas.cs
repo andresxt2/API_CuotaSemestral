@@ -17,9 +17,9 @@ namespace Logica
             return cacheBecas.ObtenerTodos();
         }
 
-        public List<Becas_Ayudas_Financieras> ListarPorEstudiante(string ci)
+        public List<Becas_Ayudas_Financieras> ListarPorEstudiante(int id)
         {
-            return cacheBecas.ObtenerTodos().Where(e => e.ci_estudiante == ci).ToList();
+            return cacheBecas.ObtenerTodos().Where(e => e.id_estudiante == id).ToList();
         }
 
         public List<Becas_Ayudas_Financieras> ListarPorTipo(string tipo)
@@ -32,12 +32,11 @@ namespace Logica
             return cacheBecas.ObtenerTodos().Where(e => e.tipo_beca == tipo).FirstOrDefault();
         }
 
-        public Becas_Ayudas_Financieras leer(int id)
+        public Becas_Ayudas_Financieras leerPorId(int id)
         {
-            return cacheBecas.ObtenerTodos().Where(e => e.id_beca == id).FirstOrDefault();
+            return cacheBecas.leerPorId(id);
         }
 
-   
 
         public void Insertar(Becas_Ayudas_Financieras beca)
         {
@@ -49,9 +48,9 @@ namespace Logica
             cacheBecas.Actualizar(beca);
         }
 
-        public bool Eliminar(Becas_Ayudas_Financieras beca)
+        public bool Eliminar(int id)
         {
-            return cacheBecas.Eliminar(beca);
+            return cacheBecas.Eliminar(id);
         }
     }
 }
