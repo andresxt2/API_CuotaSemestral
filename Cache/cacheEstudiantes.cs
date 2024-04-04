@@ -10,6 +10,18 @@ namespace Cache
     public class cacheEstudiantes
     {
 
+    }
+
+
+
+
+
+
+
+
+
+
+        /*
         private static List<Estudiantes> _cache = new List<Estudiantes>();
 
         private datosEstudiantes _datos = new datosEstudiantes();
@@ -35,6 +47,7 @@ namespace Cache
             CargarDesdeBD();
         }
 
+        
         public bool Eliminar(Estudiantes entidad)
         {
             bool resultado = _datos.Eliminar(entidad);
@@ -48,7 +61,7 @@ namespace Cache
             _cache = accesoDatos.Listar();
         }
 
+        */
 
-
-    }
+    
 }

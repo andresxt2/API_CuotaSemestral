@@ -8,13 +8,13 @@ namespace Cache
 {
     public class cacheGeneral<TEntidad, TDatos> where TDatos : IDatos<TEntidad>, new() where TEntidad : class
     {
-        private static List<TEntidad> _cache = new List<TEntidad>();
+        private static List<TEntidad> _cache;
         private TDatos _datos = new TDatos();
 
 
         public List<TEntidad> ObtenerTodos()
         {
-            if (!_cache.Any())
+            if (_cache == null)
             {
                 CargarDesdeBD();
             }
@@ -23,7 +23,7 @@ namespace Cache
 
         public TEntidad leerPorId(int id)
         {
-            if (!_cache.Any())
+            if (_cache == null)
             {
                 CargarDesdeBD();
             }
@@ -51,8 +51,8 @@ namespace Cache
 
         private void CargarDesdeBD()
         {
-            var accesoDatos = new TDatos();
-            _cache = accesoDatos.Listar();
+            _cache = new List<TEntidad>();
+            _cache = _datos.Listar();
         }
     }
 }

@@ -10,7 +10,6 @@ namespace Logica
 {
     public class logicaEstudiantes
     {
-      
         cacheGeneral<Estudiantes, datosEstudiantes> cacheEstudiantes = new cacheGeneral<Estudiantes, datosEstudiantes>();
 
         public List<Estudiantes> Listar()
@@ -56,8 +55,6 @@ namespace Logica
         public bool Eliminar(int id)
         {
             return cacheEstudiantes.Eliminar(id);
-        }
-        
-
+        }  
     }
 }

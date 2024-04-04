@@ -17,9 +17,9 @@ namespace Logica
             return cachePagos.ObtenerTodos();
         }
 
-        public List<Pagos> ListarPorEstudiante(string ci)
+        public List<Pagos> ListarPorEstudiante(int id_estudiante)
         {
-            return cachePagos.ObtenerTodos().Where(e => e.ci_estudiante == ci).ToList();
+            return cachePagos.ObtenerTodos().Where(e => e.id_estudiante == id_estudiante).ToList();
         }
 
         public List<Pagos> ListarPorFecha(DateTime fecha)
@@ -32,9 +32,9 @@ namespace Logica
             return cachePagos.ObtenerTodos().Where(e => e.estado == estado).ToList();
         }
 
-        public Pagos leer(int id)
+        public Pagos leerPorId(int id)
         {
-            return cachePagos.ObtenerTodos().Where(e => e.id_pago == id).FirstOrDefault();
+            return cachePagos.leerPorId(id);
         }
 
         public void Insertar(Pagos pago)
@@ -47,9 +47,9 @@ namespace Logica
             cachePagos.Actualizar(pago);
         }
 
-        public bool Eliminar(Pagos pago)
+        public bool Eliminar(int id)
         {
-            return cachePagos.Eliminar(pago);
+            return cachePagos.Eliminar(id);
         }
     }
 }

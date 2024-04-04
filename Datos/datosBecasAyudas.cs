@@ -32,6 +32,7 @@ namespace Datos
         #region metodos de escritura
         public void Insertar(Becas_Ayudas_Financieras becaAyuda)
         {
+            becaAyuda.borrado_logico = false;
             _context.Becas_Ayudas_Financieras.Add(becaAyuda);
             _context.SaveChanges();
         }

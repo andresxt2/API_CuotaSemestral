@@ -17,50 +17,54 @@ namespace API_SOA_CuotaSemestral
     // [System.Web.Script.Services.ScriptService]
     public class API_Cuotas_Gestion : System.Web.Services.WebService
     {
-        logicaEstudiantes logica = new logicaEstudiantes();
+        logicaEstudiantes logicaEstudiantes = new logicaEstudiantes();
         logicaBecas logicaBecas = new logicaBecas();
 
+        #region Estudiantes
         [WebMethod]
         public List<Estudiantes> Listar()
         {
-            return logica.Listar();
+            return logicaEstudiantes.Listar();
         }
 
         [WebMethod]
         public List<Estudiantes> ListarPorPrograma(string programa)
         {
-            return logica.ListarPorPrograma(programa);
+            return logicaEstudiantes.ListarPorPrograma(programa);
         }
 
         [WebMethod]
         public List<Estudiantes> ListarPorEstadoMatricula(string estado)
         {
-            return logica.ListarPorEstadoMatricula(estado);
+            return logicaEstudiantes.ListarPorEstadoMatricula(estado);
         }
 
         [WebMethod]
-        public Estudiantes leer(string ci)
+        public Estudiantes leerPorId(int id)
         {
-            return logica.leer(ci);
+            return logicaEstudiantes.leerPorId(id);
         }
 
         [WebMethod]
         public void Insertar(Estudiantes estudiante)
         {
-            logica.Insertar(estudiante);
+            logicaEstudiantes.Insertar(estudiante);
         }
 
         [WebMethod]
         public void Actualizar(Estudiantes estudiante)
         {
-            logica.Actualizar(estudiante);
+            logicaEstudiantes.Actualizar(estudiante);
         }
 
         [WebMethod]
-        public bool Eliminar(Estudiantes estudiante)
+        public bool Eliminar(int id)
         {
-            return logica.Eliminar(estudiante);
+            return logicaEstudiantes.Eliminar(id);
         }
+        #endregion
+
+
 
         [WebMethod]
         public List<Becas_Ayudas_Financieras> ListarBecasAyudas()
@@ -68,10 +72,6 @@ namespace API_SOA_CuotaSemestral
             return logicaBecas.Listar();
         }
 
-        [WebMethod]
-        public List<Becas_Ayudas_Financieras> ListarPorEstudiante(string ci)
-        {
-            return logicaBecas.ListarPorEstudiante(ci);
-        }
+
     }
 }

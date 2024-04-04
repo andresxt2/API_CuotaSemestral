@@ -29,7 +29,7 @@ namespace Logica
 
         public Morosidad leerPorId(int id)
         {
-            return cacheMorosidad.ObtenerTodos().Where(e => e.id_morosidad == id).FirstOrDefault();
+            return cacheMorosidad.leerPorId(id);
         }
 
         public void Insertar(Morosidad morosidad)

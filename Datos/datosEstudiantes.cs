@@ -19,7 +19,6 @@ namespace Datos
         public List<Estudiantes> Listar()
         {
             var estudiantes = _context.Estudiantes.Where(e => e.borrado_logico == false).ToList();
-            //becas y morosidades y pagos
             return estudiantes;
         }
 
@@ -34,13 +33,15 @@ namespace Datos
         #region metodos de escritura
         public void Insertar(Estudiantes estudiante)
         {
+            estudiante.borrado_logico = false;
             _context.Estudiantes.Add(estudiante);
             _context.SaveChanges();
         }
 
         public void Actualizar(Estudiantes estudiante)
         {
-            Estudiantes estudianteModificar = leerPorId(estudiante.id_estudiante);
+            Estudiantes estudianteModificar = leerPorId(estudiante.id_estudiante);     
+            estudianteModificar.nombre = estudiante.nombre;
             estudianteModificar.nombre = estudiante.nombre;
             estudianteModificar.correo_electronico = estudiante.correo_electronico;
             estudianteModificar.programa_academico = estudiante.programa_academico;
@@ -61,6 +62,11 @@ namespace Datos
             return false;
         }
         #endregion
+
+        public bool validarAtributoNulo (string atributo)
+        {
+            return string.IsNullOrEmpty(atributo);
+        }
 
     }
 }

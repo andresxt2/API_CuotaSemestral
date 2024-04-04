@@ -32,6 +32,7 @@ namespace Datos
         #region metodos de escritura
         public void Insertar(Morosidad morosidad)
         {
+            morosidad.borrado_logico = false;
             _context.Morosidad.Add(morosidad);
             _context.SaveChanges();
         }

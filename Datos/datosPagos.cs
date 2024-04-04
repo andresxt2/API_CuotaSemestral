@@ -32,6 +32,7 @@ namespace Datos
         #region metodos de escritura
         public void Insertar(Pagos pago)
         {
+            pago.borrado_logico = false;
             _context.Pagos.Add(pago);
             _context.SaveChanges();
         }
