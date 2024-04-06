@@ -34,7 +34,7 @@ namespace Logica
 
         public Becas_Ayudas_Financieras leerPorId(int id)
         {
-            return cacheBecas.leerPorId(id);
+            return cacheBecas.ObtenerTodos().Where(b => b.id_beca == id).FirstOrDefault();
         }
 
 

@@ -34,7 +34,7 @@ namespace Logica
 
         public Pagos leerPorId(int id)
         {
-            return cachePagos.leerPorId(id);
+            return cachePagos.ObtenerTodos().Where(e => e.id_pago == id).FirstOrDefault();
         }
 
         public void Insertar(Pagos pago)

@@ -19,10 +19,16 @@ namespace Logica
             return estudiantes;
         }
 
-        //listar por cedula
-        public List<Estudiantes> ListarPorCedula(string cedula)
+        //listar por id
+        public Estudiantes ListarPorId(int id)
         {
-            return cacheEstudiantes.ObtenerTodos().Where(e => e.ci_estudiante == cedula).ToList();
+            return cacheEstudiantes.ObtenerTodos().Where(e => e.id_estudiante == id).FirstOrDefault();
+        }
+
+        //listar por cedula
+        public Estudiantes ListarPorCedula(string cedula)
+        {
+            return cacheEstudiantes.ObtenerTodos().Where(e => e.ci_estudiante == cedula).FirstOrDefault();
         }
 
         //Listar por programa academico
