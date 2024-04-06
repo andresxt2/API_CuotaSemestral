@@ -21,15 +21,6 @@ namespace Cache
             return _cache;
         }
 
-        public TEntidad leerPorId(int id)
-        {
-            if (_cache == null)
-            {
-                CargarDesdeBD();
-            }
-            return _cache.Where(e => e.Equals(id)).FirstOrDefault();
-        }
-
         public void Insertar(TEntidad entidad)
         {
             _datos.Insertar(entidad);
