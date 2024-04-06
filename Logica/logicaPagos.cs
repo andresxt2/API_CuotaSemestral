@@ -42,9 +42,9 @@ namespace Logica
             cachePagos.Insertar(pago);
         }
 
-        public void Actualizar(Pagos pago)
+        public bool Actualizar(Pagos pago)
         {
-            cachePagos.Actualizar(pago);
+            return cachePagos.Actualizar(pago);
         }
 
         public bool Eliminar(int id)

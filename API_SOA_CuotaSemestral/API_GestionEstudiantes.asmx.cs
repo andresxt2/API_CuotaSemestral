@@ -1,24 +1,25 @@
-﻿using System;
+﻿using AccesoDatos;
+using Logica;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
-using Logica;
-using AccesoDatos;
+
 namespace API_SOA_CuotaSemestral
 {
     /// <summary>
-    /// Descripción breve de API_Cuotas_Gestion
+    /// Descripción breve de API_GestionEstudiantes
     /// </summary>
     [WebService(Namespace = "http://tempuri.org/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
     [System.ComponentModel.ToolboxItem(false)]
     // Para permitir que se llame a este servicio web desde un script, usando ASP.NET AJAX, quite la marca de comentario de la línea siguiente. 
     // [System.Web.Script.Services.ScriptService]
-    public class API_Cuotas_Gestion : System.Web.Services.WebService
+    public class API_GestionEstudiantes : System.Web.Services.WebService
     {
+
         logicaEstudiantes logicaEstudiantes = new logicaEstudiantes();
-        logicaBecas logicaBecas = new logicaBecas();
 
         #region Estudiantes
         [WebMethod]
@@ -63,15 +64,6 @@ namespace API_SOA_CuotaSemestral
             return logicaEstudiantes.Eliminar(id);
         }
         #endregion
-
-
-
-        [WebMethod]
-        public List<Becas_Ayudas_Financieras> ListarBecasAyudas()
-        {
-            return logicaBecas.Listar();
-        }
-
 
     }
 }

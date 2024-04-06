@@ -20,7 +20,7 @@ namespace Logica
         }
 
         //listar por id
-        public Estudiantes ListarPorId(int id)
+        public Estudiantes leerPorId(int id)
         {
             return cacheEstudiantes.ObtenerTodos().Where(e => e.id_estudiante == id).FirstOrDefault();
         }
@@ -42,20 +42,15 @@ namespace Logica
             return cacheEstudiantes.ObtenerTodos().Where(e => e.estado_matricula == estado).ToList();
         }
 
-        public Estudiantes leerPorId(int id)
-        {
-            return cacheEstudiantes.leerPorId(id);
-        }
-
 
         public void Insertar(Estudiantes estudiante)
         {
             cacheEstudiantes.Insertar(estudiante);
         }
 
-        public void Actualizar(Estudiantes estudiante)
+        public bool Actualizar(Estudiantes estudiante)
         {
-            cacheEstudiantes.Actualizar(estudiante);
+            return cacheEstudiantes.Actualizar(estudiante);
         }
 
         public bool Eliminar(int id)

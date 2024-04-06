@@ -37,9 +37,9 @@ namespace Logica
             cacheMorosidad.Insertar(morosidad);
         }
 
-        public void Actualizar(Morosidad morosidad)
+        public bool Actualizar(Morosidad morosidad)
         {
-            cacheMorosidad.Actualizar(morosidad);
+           return cacheMorosidad.Actualizar(morosidad);
         }
 
         public bool Eliminar(int id )

@@ -43,9 +43,9 @@ namespace Logica
             cacheBecas.Insertar(beca);
         }
 
-        public void Actualizar(Becas_Ayudas_Financieras beca)
+        public bool Actualizar(Becas_Ayudas_Financieras beca)
         {
-            cacheBecas.Actualizar(beca);
+            return cacheBecas.Actualizar(beca);
         }
 
         public bool Eliminar(int id)

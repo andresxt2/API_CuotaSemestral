@@ -12,7 +12,7 @@ namespace Datos
         T leerPorId(int id_entidad);
         void Insertar(T entidad);
 
-        void Actualizar(T entidad);
+        bool Actualizar(T entidad);
         bool Eliminar(int id_entidad);
     }
 }

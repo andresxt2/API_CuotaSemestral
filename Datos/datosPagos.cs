@@ -37,13 +37,17 @@ namespace Datos
             _context.SaveChanges();
         }
 
-        public void Actualizar(Pagos pago)
+        public bool Actualizar(Pagos pago)
         {
             Pagos pagoModificar = leerPorId(pago.id_pago);
+            if(pagoModificar != null) { 
             pagoModificar.fecha_pago = pago.fecha_pago;
             pagoModificar.monto = pago.monto;
             pagoModificar.id_estudiante = pago.id_estudiante;
             _context.SaveChanges();
+            return true;
+            }
+            return false;
         }
 
         public bool Eliminar(int id_pago)

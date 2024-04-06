@@ -38,15 +38,19 @@ namespace Datos
             _context.SaveChanges();
         }
 
-        public void Actualizar(Estudiantes estudiante)
+        public bool Actualizar(Estudiantes estudiante)
         {
-            Estudiantes estudianteModificar = leerPorId(estudiante.id_estudiante);     
-            estudianteModificar.nombre = estudiante.nombre;
+            Estudiantes estudianteModificar = leerPorId(estudiante.id_estudiante);
+            if (estudianteModificar != null) { 
             estudianteModificar.nombre = estudiante.nombre;
             estudianteModificar.correo_electronico = estudiante.correo_electronico;
             estudianteModificar.programa_academico = estudiante.programa_academico;
             estudianteModificar.estado_matricula = estudiante.estado_matricula;
             _context.SaveChanges();
+            return true;
+            }
+            return false;
+
         }
 
         public bool Eliminar(int id_estudiante)

@@ -37,14 +37,18 @@ namespace Datos
             _context.SaveChanges();
         }
 
-        public void Actualizar(Becas_Ayudas_Financieras becaAyuda)
+        public bool Actualizar(Becas_Ayudas_Financieras becaAyuda)
         {
             Becas_Ayudas_Financieras becaAyudaModificar = leerPorId(becaAyuda.id_beca);
+            if (becaAyudaModificar != null) { 
             becaAyudaModificar.id_estudiante = becaAyuda.id_estudiante;
             becaAyudaModificar.tipo_beca = becaAyuda.tipo_beca;
             becaAyudaModificar.monto = becaAyuda.monto;
             becaAyudaModificar.semestre = becaAyuda.semestre;
             _context.SaveChanges();
+            return true;
+            }
+            return false;
         }
 
         public bool Eliminar(int id_beca)

@@ -37,14 +37,18 @@ namespace Datos
             _context.SaveChanges();
         }
 
-        public void Actualizar(Morosidad morosidad)
+        public bool Actualizar(Morosidad morosidad)
         {
             Morosidad morosidadModificar = leerPorId(morosidad.id_morosidad);
+            if(morosidadModificar != null) { 
             morosidadModificar.id_estudiante = morosidad.id_estudiante;
             morosidadModificar.semestre = morosidad.semestre;
             morosidadModificar.dias_retraso = morosidad.dias_retraso;
             morosidadModificar.monto_debido = morosidad.monto_debido;
             _context.SaveChanges();
+            return true;
+            }
+            return false;
         }
 
         public bool Eliminar(int id_morosidad)

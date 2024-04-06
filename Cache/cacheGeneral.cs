@@ -27,10 +27,11 @@ namespace Cache
             CargarDesdeBD();
         }
 
-        public void Actualizar(TEntidad entidad)
+        public bool Actualizar(TEntidad entidad)
         {
-            _datos.Actualizar(entidad);
+            bool resultado = _datos.Actualizar(entidad);
             CargarDesdeBD();
+            return resultado;
         }
 
         public bool Eliminar(int id)
