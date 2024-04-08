@@ -70,12 +70,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="API_GestionBecas.asmx" />
     <Content Include="API_GestionEstudiantes.asmx" />
+    <Content Include="API_GestionMorosidad.asmx" />
+    <Content Include="API_GestionPagos.asmx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API_GestionBecas.asmx.cs">
+      <DependentUpon>API_GestionBecas.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="API_GestionEstudiantes.asmx.cs">
       <DependentUpon>API_GestionEstudiantes.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="API_GestionMorosidad.asmx.cs">
+      <DependentUpon>API_GestionMorosidad.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="API_GestionPagos.asmx.cs">
+      <DependentUpon>API_GestionPagos.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

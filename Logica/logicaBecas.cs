@@ -19,7 +19,7 @@ namespace Logica
 
         public List<Becas_Ayudas_Financieras> ListarPorEstudiante(int id)
         {
-            return cacheBecas.ObtenerTodos().Where(e => e.id_estudiante == id).ToList();
+            return cacheBecas.ObtenerTodos().Where(b => b.id_estudiante == id).ToList();
         }
 
         public List<Becas_Ayudas_Financieras> ListarPorTipo(string tipo)

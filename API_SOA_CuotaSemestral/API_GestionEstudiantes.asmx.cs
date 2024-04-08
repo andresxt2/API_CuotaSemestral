@@ -53,9 +53,9 @@ namespace API_SOA_CuotaSemestral
         }
 
         [WebMethod]
-        public void Actualizar(Estudiantes estudiante)
+        public bool Actualizar(Estudiantes estudiante)
         {
-            logicaEstudiantes.Actualizar(estudiante);
+           return logicaEstudiantes.Actualizar(estudiante);
         }
 
         [WebMethod]
