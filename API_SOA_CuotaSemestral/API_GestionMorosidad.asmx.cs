@@ -25,7 +25,7 @@ namespace API_SOA_CuotaSemestral
         }
 
         [WebMethod]
-        public List<Morosidad> ListarPorEstudiante(int id)
+        public List<Morosidad> ListarPorEstudiante(string id)
         {
             return logicaMorosidad.ListarPorEstudiante(id);
         }

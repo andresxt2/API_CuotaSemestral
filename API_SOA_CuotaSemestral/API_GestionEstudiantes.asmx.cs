@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
-
 namespace API_SOA_CuotaSemestral
 {
     /// <summary>
@@ -28,6 +27,7 @@ namespace API_SOA_CuotaSemestral
             return logicaEstudiantes.Listar();
         }
 
+
         [WebMethod]
         public List<Estudiantes> ListarPorPrograma(string programa)
         {
@@ -41,7 +41,7 @@ namespace API_SOA_CuotaSemestral
         }
 
         [WebMethod]
-        public Estudiantes leerPorId(int id)
+        public Estudiantes leerPorId(string id)
         {
             return logicaEstudiantes.leerPorId(id);
         }
@@ -59,7 +59,7 @@ namespace API_SOA_CuotaSemestral
         }
 
         [WebMethod]
-        public bool Eliminar(int id)
+        public bool Eliminar(string id)
         {
             return logicaEstudiantes.Eliminar(id);
         }

@@ -26,7 +26,7 @@ namespace API_SOA_CuotaSemestral
         }
 
         [WebMethod]
-        public List<Pagos> ListarPorEstudiante(int id)
+        public List<Pagos> ListarPorEstudiante(string id)
         {
             return logicaPagos.ListarPorEstudiante(id);
         }
@@ -53,6 +53,11 @@ namespace API_SOA_CuotaSemestral
         public bool Actualizar(Pagos pago)
         {
             return logicaPagos.Actualizar(pago);
+        }
+
+        public bool ActualizarEstado(string cod_pago)
+        {
+            return logicaPagos.ActualizarEstado(cod_pago);
         }
 
         [WebMethod]

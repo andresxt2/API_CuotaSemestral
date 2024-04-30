@@ -26,7 +26,7 @@ namespace API_SOA_CuotaSemestral
         }
 
         [WebMethod]
-        public List<Becas_Ayudas_Financieras> ListarPorEstudiante(int id)
+        public List<Becas_Ayudas_Financieras> ListarPorEstudiante(string id)
         {
             return logicaBecas.ListarPorEstudiante(id);
         }

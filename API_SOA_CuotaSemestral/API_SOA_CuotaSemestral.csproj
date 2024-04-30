@@ -74,6 +74,8 @@
     <Content Include="API_GestionEstudiantes.asmx" />
     <Content Include="API_GestionMorosidad.asmx" />
     <Content Include="API_GestionPagos.asmx" />
+    <Content Include="API_GestionResultados.asmx" />
+    <Content Include="API_MostrarServicioPCA.asmx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -93,6 +95,14 @@
       <DependentUpon>API_GestionPagos.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="API_GestionResultados.asmx.cs">
+      <DependentUpon>API_GestionResultados.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="API_MostrarServicioPCA.asmx.cs">
+      <DependentUpon>API_MostrarServicioPCA.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -106,13 +116,16 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AccesoDatos\AccesoDatos.csproj">
-      <Project>{a9be4606-3e23-43c1-88ce-048e4bb7199e}</Project>
+      <Project>{3bd1403a-75f6-4012-91c4-64573cc01ca5}</Project>
       <Name>AccesoDatos</Name>
     </ProjectReference>
     <ProjectReference Include="..\Logica\Logica.csproj">
       <Project>{9ff5f77f-ce16-4502-990a-75b18d6a5572}</Project>
       <Name>Logica</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
