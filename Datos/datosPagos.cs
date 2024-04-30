@@ -55,7 +55,7 @@ namespace Datos
                 mostrar.cedula = item.id_estudiante;
                 mostrar.cod_pago = item.cod_pago;
                 mostrar.monto = item.saldo;
-                mostrar.nServicio = "Pago";
+                mostrar.nServicio = "PagoColegiaturas";
                 lista.Add(mostrar);
             }
             return lista;

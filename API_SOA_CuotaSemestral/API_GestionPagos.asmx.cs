@@ -55,6 +55,7 @@ namespace API_SOA_CuotaSemestral
             return logicaPagos.Actualizar(pago);
         }
 
+        [WebMethod]
         public bool ActualizarEstado(string cod_pago)
         {
             return logicaPagos.ActualizarEstado(cod_pago);

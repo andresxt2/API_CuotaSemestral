@@ -12,7 +12,6 @@ namespace AccesoDatos.DTO
         public string cod_pago { get; set; }
         public decimal monto { get; set; }
         public string estado { get; set; }
-
         public string nServicio { get; set; }
     }
 }
