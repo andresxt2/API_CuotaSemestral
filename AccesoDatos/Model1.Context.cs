@@ -12,13 +12,15 @@ namespace AccesoDatos
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class bddColegiaturasV2 : DbContext
     {
         public bddColegiaturasV2()
             : base("name=bddColegiaturasV2")
         {
-            this.Configuration.ProxyCreationEnabled = false; // Añade esta línea para deshabilitar la creación de proxies
+            this.Configuration.ProxyCreationEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -30,5 +32,15 @@ namespace AccesoDatos
         public virtual DbSet<Estudiantes> Estudiantes { get; set; }
         public virtual DbSet<Morosidad> Morosidad { get; set; }
         public virtual DbSet<Pagos> Pagos { get; set; }
+    
+        public virtual ObjectResult<ReporteEstadoPagos_Result> ReporteEstadoPagos()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ReporteEstadoPagos_Result>("ReporteEstadoPagos");
+        }
+    
+        public virtual ObjectResult<ReporteMorosidadPorPrograma_Result> ReporteMorosidadPorPrograma()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ReporteMorosidadPorPrograma_Result>("ReporteMorosidadPorPrograma");
+        }
     }
 }

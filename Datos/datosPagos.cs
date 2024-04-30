@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AccesoDatos;
+using AccesoDatos.DTO;
 namespace Datos
 {
     public class datosPagos:IDatos<Pagos>
@@ -26,6 +27,11 @@ namespace Datos
             return _context.Pagos.Where(p => p.id_pago == id && p.borrado_logico == false).FirstOrDefault();
         }
 
+        public Pagos leerPorCod(string cod_pago)
+        {
+            return _context.Pagos.Where(p => p.cod_pago == cod_pago && p.borrado_logico == false).FirstOrDefault();
+        }
+
 
         #endregion
 
@@ -37,15 +43,52 @@ namespace Datos
             _context.SaveChanges();
         }
 
+        public List<MostrarPagosPCA> mostrarPagosPCAs(string cedula)
+        {
+            var consulta = Listar().Where(p => p.id_estudiante == cedula && p.estado == "pendiente").ToList();
+
+            List<MostrarPagosPCA> lista = new List<MostrarPagosPCA>();
+
+            foreach (var item in consulta)
+            {
+                MostrarPagosPCA mostrar = new MostrarPagosPCA();
+                mostrar.cedula = item.id_estudiante;
+                mostrar.cod_pago = item.cod_pago;
+                mostrar.monto = item.saldo;
+                mostrar.nServicio = "Pago";
+                lista.Add(mostrar);
+            }
+            return lista;
+        }
+
+
+
         public bool Actualizar(Pagos pago)
         {
             Pagos pagoModificar = leerPorId(pago.id_pago);
             if(pagoModificar != null) { 
             pagoModificar.fecha_pago = pago.fecha_pago;
-            pagoModificar.monto = pago.monto;
+            pagoModificar.saldo = pago.saldo;
             pagoModificar.id_estudiante = pago.id_estudiante;
+            pagoModificar.estado = pago.estado;
+            pagoModificar.semestre = pago.semestre;
             _context.SaveChanges();
             return true;
+            }
+            return false;
+        }
+
+        public bool ActualizarEstado(string cod_pago)
+        {
+            Pagos pagoModificar = leerPorCod(cod_pago);
+            if (pagoModificar != null)
+            {
+                if(pagoModificar.estado.ToLower().Trim() == "pendiente") { 
+                pagoModificar.estado = "pagado";
+                _context.SaveChanges();
+                return true;
+                }
+                return false;
             }
             return false;
         }

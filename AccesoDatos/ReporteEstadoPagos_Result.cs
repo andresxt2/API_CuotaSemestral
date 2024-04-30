@@ -10,20 +10,11 @@
 namespace AccesoDatos
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Pagos
+    public partial class ReporteEstadoPagos_Result
     {
-        public int id_pago { get; set; }
-        public string cod_pago { get; set; }
-        public string id_estudiante { get; set; }
-        public System.DateTime fecha_pago { get; set; }
-        public decimal saldo { get; set; }
-        public string semestre { get; set; }
         public string estado { get; set; }
-        public Nullable<bool> borrado_logico { get; set; }
-        public Nullable<System.DateTime> fecha_borrado_logico { get; set; }
-    
-        public virtual Estudiantes Estudiantes { get; set; }
+        public Nullable<int> Total_Pagos { get; set; }
+        public Nullable<decimal> Monto_Total { get; set; }
     }
 }

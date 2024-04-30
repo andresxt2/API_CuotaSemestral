@@ -4,53 +4,52 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AccesoDatos;
-using Cache;
 using Datos;
 namespace Logica
 {
     public class logicaBecas
     {
-        cacheGeneral<Becas_Ayudas_Financieras, datosBecasAyudas> cacheBecas = new cacheGeneral<Becas_Ayudas_Financieras, datosBecasAyudas>();
+        datosBecasAyudas DatosBecas = new datosBecasAyudas();
 
         public List<Becas_Ayudas_Financieras> Listar()
         {
-            return cacheBecas.ObtenerTodos();
+            return DatosBecas.Listar();
         }
 
-        public List<Becas_Ayudas_Financieras> ListarPorEstudiante(int id)
+        public List<Becas_Ayudas_Financieras> ListarPorEstudiante(string id)
         {
-            return cacheBecas.ObtenerTodos().Where(b => b.id_estudiante == id).ToList();
+            return DatosBecas.Listar().Where(b => b.id_estudiante == id).ToList();
         }
 
         public List<Becas_Ayudas_Financieras> ListarPorTipo(string tipo)
         {
-            return cacheBecas.ObtenerTodos().Where(e => e.tipo_beca == tipo).ToList();
+            return DatosBecas.Listar().Where(e => e.tipo_beca == tipo).ToList();
         }
 
         public Becas_Ayudas_Financieras ListarPorTipoBeca(string tipo)
         {
-            return cacheBecas.ObtenerTodos().Where(e => e.tipo_beca == tipo).FirstOrDefault();
+            return DatosBecas.Listar().Where(e => e.tipo_beca == tipo).FirstOrDefault();
         }
 
         public Becas_Ayudas_Financieras leerPorId(int id)
         {
-            return cacheBecas.ObtenerTodos().Where(b => b.id_beca == id).FirstOrDefault();
+            return DatosBecas.Listar().Where(b => b.id_beca == id).FirstOrDefault();
         }
 
 
         public void Insertar(Becas_Ayudas_Financieras beca)
         {
-            cacheBecas.Insertar(beca);
+            DatosBecas.Insertar(beca);
         }
 
         public bool Actualizar(Becas_Ayudas_Financieras beca)
         {
-            return cacheBecas.Actualizar(beca);
+            return DatosBecas.Actualizar(beca);
         }
 
         public bool Eliminar(int id)
         {
-            return cacheBecas.Eliminar(id);
+            return DatosBecas.Eliminar(id);
         }
     }
 }

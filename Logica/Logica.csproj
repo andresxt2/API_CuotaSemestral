@@ -48,16 +48,14 @@
     <Compile Include="logicaEstudiantes.cs" />
     <Compile Include="logicaMorosidad.cs" />
     <Compile Include="logicaPagos.cs" />
+    <Compile Include="logicaResultados.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Servicio.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AccesoDatos\AccesoDatos.csproj">
-      <Project>{a9be4606-3e23-43c1-88ce-048e4bb7199e}</Project>
+      <Project>{3bd1403a-75f6-4012-91c4-64573cc01ca5}</Project>
       <Name>AccesoDatos</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Cache\Cache.csproj">
-      <Project>{e834878e-77c2-4baf-95ec-d0cce36e8dd7}</Project>
-      <Name>Cache</Name>
     </ProjectReference>
     <ProjectReference Include="..\Datos\Datos.csproj">
       <Project>{f21e451f-af4b-4f10-8e9f-b02e1b1520f9}</Project>

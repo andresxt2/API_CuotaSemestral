@@ -4,47 +4,46 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AccesoDatos;
-using Cache;
 using Datos;
 namespace Logica
 {
     public class logicaMorosidad
     {
-        cacheGeneral<Morosidad, datosMorosidad> cacheMorosidad = new cacheGeneral<Morosidad, datosMorosidad>();
+        datosMorosidad DatosMorosidad = new datosMorosidad();
 
         public List<Morosidad> Listar()
         {
-            return cacheMorosidad.ObtenerTodos();
+            return DatosMorosidad.Listar();
         }
 
-        public List<Morosidad> ListarPorEstudiante (int id_estudiante)
+        public List<Morosidad> ListarPorEstudiante (string id_estudiante)
         {
-            return cacheMorosidad.ObtenerTodos().Where(e => e.id_estudiante == id_estudiante).ToList();
+            return DatosMorosidad.Listar().Where(e => e.id_estudiante == id_estudiante).ToList();
         }
 
         public List<Morosidad> ListarPorDiasRetraso(int dias)
         {
-            return cacheMorosidad.ObtenerTodos().Where(e => e.dias_retraso == dias).ToList();
+            return DatosMorosidad.Listar().Where(e => e.dias_retraso == dias).ToList();
         }
 
         public Morosidad leerPorId(int id)
         {
-            return cacheMorosidad.ObtenerTodos().Where(m => m.id_morosidad == id).FirstOrDefault();
+            return DatosMorosidad.Listar().Where(m => m.id_morosidad == id).FirstOrDefault();
         }
 
         public void Insertar(Morosidad morosidad)
         {
-            cacheMorosidad.Insertar(morosidad);
+            DatosMorosidad.Insertar(morosidad);
         }
 
         public bool Actualizar(Morosidad morosidad)
         {
-           return cacheMorosidad.Actualizar(morosidad);
+           return DatosMorosidad.Actualizar(morosidad);
         }
 
         public bool Eliminar(int id )
         {
-            return cacheMorosidad.Eliminar(id);
+            return DatosMorosidad.Eliminar(id);
         }
 
     }

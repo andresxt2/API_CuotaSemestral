@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using AccesoDatos;
 namespace Datos
 {
-    public class datosEstudiantes:IDatos<Estudiantes>
+    public class datosEstudiantes
     {
         bddColegiaturasV2 _context;
         public datosEstudiantes()
@@ -23,7 +23,33 @@ namespace Datos
         }
 
 
-        public Estudiantes leerPorId(int id)
+        public PaginacionResultado<Estudiantes> ListarPaginado(int numeroPagina, int tamanoPagina, string terminoBusqueda = null)
+        {
+            var query = _context.Estudiantes.Where(e => e.borrado_logico == false);
+
+            // Opcional: Implementa filtrado basado en el término de búsqueda
+            if (!string.IsNullOrEmpty(terminoBusqueda))
+            {
+                query = query.Where(e => e.nombres.Contains(terminoBusqueda) ||
+                                         e.correo_electronico.Contains(terminoBusqueda));
+            }
+
+            int totalRegistros = query.Count();
+
+            // Aplicar paginación
+            var estudiantes = query.OrderBy(e => e.id_estudiante) // Ajusta esto según tus necesidades de ordenación
+                                    .Skip((numeroPagina - 1) * tamanoPagina)
+                                    .Take(tamanoPagina)
+                                    .ToList();
+
+            return new PaginacionResultado<Estudiantes>
+            {
+                Items = estudiantes,
+                TotalRegistros = totalRegistros
+            };
+        }
+
+        public Estudiantes leerPorId(string id)
         {
             return _context.Estudiantes.Where(e => e.id_estudiante == id && e.borrado_logico == false).FirstOrDefault();
         }
@@ -42,7 +68,8 @@ namespace Datos
         {
             Estudiantes estudianteModificar = leerPorId(estudiante.id_estudiante);
             if (estudianteModificar != null) { 
-            estudianteModificar.nombre = estudiante.nombre;
+            estudianteModificar.nombres = estudiante.nombres;
+            estudianteModificar.apellidos = estudiante.apellidos;
             estudianteModificar.correo_electronico = estudiante.correo_electronico;
             estudianteModificar.programa_academico = estudiante.programa_academico;
             estudianteModificar.estado_matricula = estudiante.estado_matricula;
@@ -53,7 +80,7 @@ namespace Datos
 
         }
 
-        public bool Eliminar(int id_estudiante)
+        public bool Eliminar(string id_estudiante)
         {
             Estudiantes estudianteEliminar = leerPorId(id_estudiante);
             if (estudianteEliminar != null)

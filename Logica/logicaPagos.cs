@@ -4,52 +4,64 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AccesoDatos;
-using Cache;
+using AccesoDatos.DTO;
 using Datos;
 namespace Logica
 {
     public class logicaPagos
     {
-        cacheGeneral<Pagos, datosPagos> cachePagos = new cacheGeneral<Pagos, datosPagos>();
+        datosPagos DatosPagos = new datosPagos();
 
         public List<Pagos> Listar()
         {
-            return cachePagos.ObtenerTodos();
+            return DatosPagos.Listar();
         }
 
-        public List<Pagos> ListarPorEstudiante(int id_estudiante)
+        public List<MostrarPagosPCA> mostrarPagosPCAs(string cedula)
         {
-            return cachePagos.ObtenerTodos().Where(e => e.id_estudiante == id_estudiante).ToList();
+               return DatosPagos.mostrarPagosPCAs(cedula);
+        }
+
+        public List<Pagos> ListarPorEstudiante(string id_estudiante)
+        {
+            return DatosPagos.Listar().Where(e => e.id_estudiante == id_estudiante).ToList();
         }
 
         public List<Pagos> ListarPorFecha(DateTime fecha)
         {
-            return cachePagos.ObtenerTodos().Where(e => e.fecha_pago == fecha).ToList();
+            return DatosPagos.Listar().Where(e => e.fecha_pago == fecha).ToList();
         }
 
         public List<Pagos> ListarPorEstado (string estado)
         {
-            return cachePagos.ObtenerTodos().Where(e => e.estado == estado).ToList();
+            return DatosPagos.Listar().Where(e => e.estado == estado).ToList();
         }
 
         public Pagos leerPorId(int id)
         {
-            return cachePagos.ObtenerTodos().Where(e => e.id_pago == id).FirstOrDefault();
+            return DatosPagos.Listar().Where(e => e.id_pago == id).FirstOrDefault();
         }
+
+
 
         public void Insertar(Pagos pago)
         {
-            cachePagos.Insertar(pago);
+            DatosPagos.Insertar(pago);
         }
 
         public bool Actualizar(Pagos pago)
         {
-            return cachePagos.Actualizar(pago);
+            return DatosPagos.Actualizar(pago);
+        }
+
+        public bool ActualizarEstado(string cod_pago)
+        {
+            return DatosPagos.ActualizarEstado(cod_pago);
         }
 
         public bool Eliminar(int id)
         {
-            return cachePagos.Eliminar(id);
+            return DatosPagos.Eliminar(id);
         }
     }
 }

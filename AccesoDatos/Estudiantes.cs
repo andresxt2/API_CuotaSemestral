@@ -22,9 +22,9 @@ namespace AccesoDatos
             this.Pagos = new List<Pagos>();
         }
     
-        public int id_estudiante { get; set; }
-        public string ci_estudiante { get; set; }
-        public string nombre { get; set; }
+        public string id_estudiante { get; set; }
+        public string nombres { get; set; }
+        public string apellidos { get; set; }
         public string correo_electronico { get; set; }
         public string programa_academico { get; set; }
         public string estado_matricula { get; set; }

@@ -48,12 +48,17 @@
     <Compile Include="datosEstudiantes.cs" />
     <Compile Include="datosMorosidad.cs" />
     <Compile Include="datosPagos.cs" />
+    <Compile Include="datosResultados.cs" />
     <Compile Include="IDatos.cs" />
+    <Compile Include="PaginacionResultado.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\AccesoDatos\AccesoDatos.csproj">
-      <Project>{a9be4606-3e23-43c1-88ce-048e4bb7199e}</Project>
+      <Project>{3bd1403a-75f6-4012-91c4-64573cc01ca5}</Project>
       <Name>AccesoDatos</Name>
     </ProjectReference>
   </ItemGroup>
