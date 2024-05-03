@@ -26,7 +26,7 @@ namespace API_SOA_CuotaSemestral
         {
             return servicio;
         }
-        /*
+        
         [WebMethod]
         public MostrarPagosPCA MostrarPagosPCA(Pagos pago)
         {
@@ -36,21 +36,25 @@ namespace API_SOA_CuotaSemestral
             //mostrarPagosPCA.estado = pago.estado;
             mostrarPagosPCA.nServicio = "PagoColegiaturas";
             return mostrarPagosPCA;
-        }*/
-
-       /* [WebMethod]
-
-        public List<MostrarPagosPCA> mostrarPagosPCAs(string cedula)
-        {
-            return logicaPagos.mostrarPagosPCAs(cedula);
-        }*/
+        }
 
         [WebMethod]
-
+        
         public List<MostrarPagosPCA> mostrarPagosPCAs(string cedula)
         {
             return logicaPagos.mostrarPagosPCAs(cedula);
         }
+
+
+        [WebMethod]
+        public bool ActualizarEstado(string cod_pago)
+        {
+            return logicaPagos.ActualizarEstado(cod_pago);
+        }
+
+
+
+
 
     }
 }

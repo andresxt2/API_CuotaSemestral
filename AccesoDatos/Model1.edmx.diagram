@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="27733c6a22c44593ba37ab90b194be02" Name="Diagram1">
+      <Diagram DiagramId="27733c6a22c44593ba37ab90b194be02" Name="Diagram1" ZoomLevel="86">
         <EntityTypeShape EntityType="bddColegiaturasV2Model.Becas_Ayudas_Financieras" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="bddColegiaturasV2Model.Estudiantes" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="bddColegiaturasV2Model.Morosidad" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
