@@ -53,8 +53,9 @@ namespace Datos
             {
                 MostrarPagosPCA mostrar = new MostrarPagosPCA();
                 mostrar.cedula = item.id_estudiante;
-                mostrar.cod_pago = item.cod_pago;
+                mostrar.codPago = item.cod_pago;
                 mostrar.monto = item.saldo;
+                mostrar.estado = item.estado;
                 mostrar.nServicio = "PagoColegiaturas";
                 lista.Add(mostrar);
             }

@@ -27,16 +27,6 @@ namespace API_SOA_CuotaSemestral
             return servicio;
         }
         
-        [WebMethod]
-        public MostrarPagosPCA MostrarPagosPCA(Pagos pago)
-        {
-            mostrarPagosPCA.cedula = pago.id_estudiante;
-            mostrarPagosPCA.cod_pago = pago.cod_pago;
-            mostrarPagosPCA.monto = pago.saldo;
-            //mostrarPagosPCA.estado = pago.estado;
-            mostrarPagosPCA.nServicio = "PagoColegiaturas";
-            return mostrarPagosPCA;
-        }
 
         [WebMethod]
         
@@ -51,8 +41,6 @@ namespace API_SOA_CuotaSemestral
         {
             return logicaPagos.ActualizarEstado(cod_pago);
         }
-
-
 
 
 

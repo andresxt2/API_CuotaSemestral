@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API_SOA_CuotaSemestral", "A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccesoDatos", "AccesoDatos\AccesoDatos.csproj", "{3BD1403A-75F6-4012-91C4-64573CC01CA5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiRest_CuotaSemestral", "ApiRest_CuotaSemestral\ApiRest_CuotaSemestral.csproj", "{743E9468-C80A-4F2F-ACFD-A0886795201F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{3BD1403A-75F6-4012-91C4-64573CC01CA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BD1403A-75F6-4012-91C4-64573CC01CA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BD1403A-75F6-4012-91C4-64573CC01CA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{743E9468-C80A-4F2F-ACFD-A0886795201F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{743E9468-C80A-4F2F-ACFD-A0886795201F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{743E9468-C80A-4F2F-ACFD-A0886795201F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{743E9468-C80A-4F2F-ACFD-A0886795201F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

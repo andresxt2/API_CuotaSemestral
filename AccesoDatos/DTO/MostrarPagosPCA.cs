@@ -9,7 +9,7 @@ namespace AccesoDatos.DTO
     public class MostrarPagosPCA
     {
         public string cedula { get; set; }
-        public string cod_pago { get; set; }
+        public string codPago { get; set; }
         public decimal monto { get; set; }
         public string estado { get; set; }
         public string nServicio { get; set; }
