@@ -36,26 +36,12 @@ namespace ApiRest_CuotaSemestral.Controllers
             return logicaPagos.mostrarPagosPCAs(cedula);
         }
 
-        [HttpPut]
+        [HttpGet]
         [Route("api/ServicioPCA/actualizarEstado/{codPago}")]
-        public IHttpActionResult Put(string codPago)
+        public bool Put(string codPago)
         {
-            try
-            {
                 bool actualizado = logicaPagos.ActualizarEstado(codPago);
-                if (actualizado)
-                {
-                    return Ok(new { mensaje = "El estado del pago se actualizó correctamente." });
-                }
-                else
-                {
-                    return BadRequest("No se pudo actualizar el estado del pago.");
-                }
-            }
-            catch (Exception ex)
-            {
-                return InternalServerError(ex);
-            }
+                return actualizado;
         }
 
         // POST: api/ServicioPCA
